@@ -24,6 +24,8 @@ nodes = ['13.52.10.83', '18.144.72.192', '54.193.31.203', '13.57.9.202']
 # you forward to your main address.
 address = '<YOUR ADDRESS>'
 gmail_pass = '<YOUR PASSWORD>'
+mailProvider = '<SMTP MAIL PROVIDER>'
+mailSMTPPORT = '<SMTP PORT>'
 
 # JAR location
 # The StatusRequestScript has only been added to the Nyzo repo recently. Update
@@ -50,7 +52,7 @@ def send_alerts():
         msg['To'] = toaddr
         msg['Subject'] = 'NYZO Node Monitor: Issue(s) Detected'
 
-        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server = smtplib.SMTP(mailProvider, mailSMTPPORT)
         server.starttls()
         server.login(address, gmail_pass)
         text = msg.as_string()
